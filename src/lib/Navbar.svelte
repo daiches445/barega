@@ -32,45 +32,6 @@
 </nav>
 
 <!-- <style>
-	.navbar {
-		position: fixed;
-		top: 20px;
-		left: 50%;
-		transform: translateX(-50%);
-		width: 90%;
-		z-index: 1000;
-
-		/* Glassmorphism background */
-		background: rgba(255, 255, 255, 0.1); /* Very transparent */
-		backdrop-filter: blur(12px); /* The blurry effect */
-		-webkit-backdrop-filter: blur(12px);
-
-		border: 1px solid rgba(255, 255, 255, 0.2);
-		border-radius: 10px;
-		padding: 1rem 2rem;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
-
-	.nav-links button,
-	.logo {
-		background: none;
-		border: none;
-		cursor: pointer;
-		font-weight: bold;
-
-		/* THE CONTRAST TRICK */
-		color: white;
-		mix-blend-mode: difference;
-
-		/* Difference mode can sometimes look 'neon'. 
-       Using an isolation layer on the parent or 
-       keeping the color white usually yields the best results. */
-	}
-</style> -->
-
-<style>
 	.brand {
 		display: flex;
 		align-items: center; /* Vertically centers the icon and text */
@@ -139,5 +100,44 @@
 		font-family: 'Copperplate Gothic', serif;
 		cursor: pointer;
 		transition: color 0.4s ease;
+	}
+</style> -->
+
+<style>
+	.navbar {
+		position: fixed;
+		top: 20px;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 90%;
+		z-index: 1000;
+
+		/* Glassmorphism background */
+		background: rgba(255, 255, 255, 0.1); /* Very transparent */
+		backdrop-filter: blur(12px); /* The blurry effect */
+		-webkit-backdrop-filter: blur(12px);
+
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		border-radius: 10px;
+		padding: 1rem 2rem;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.nav-links button,
+	.logo {
+		background: none;
+		border: none;
+		cursor: pointer;
+		font-weight: bold;
+
+		/* THE CONTRAST TRICK */
+		color: white;
+		mix-blend-mode: difference;
+
+		/* Difference mode can sometimes look 'neon'. 
+       Using an isolation layer on the parent or 
+       keeping the color white usually yields the best results. */
 	}
 </style>
