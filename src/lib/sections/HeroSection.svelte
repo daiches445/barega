@@ -1,7 +1,7 @@
 <div class="hero-content">
 	<!-- <img src="/pinecorn_blk.png" alt="Brand Logo" class="hero-logo" /> -->
 	<h1 class="hero-title">barega</h1>
-	<p class="hero-subtitle">Innovative Solutions for Modern Brands</p>
+	<p class="hero-subtitle">WINE & COCKTAIL BAR</p>
 </div>
 
 <style>
