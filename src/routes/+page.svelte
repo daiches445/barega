@@ -4,9 +4,11 @@
 	import HeroSection from '$lib/sections/HeroSection.svelte';
 	const navItems = [
 		{ label: '', id: 'home' },
-		{ label: 'מי אנחנו', id: 'features' },
-		{ label: 'שירותים', id: 'contact' },
-		{ label: 'צרו קשר', id: 'contact2' }
+		{ label: 'צרו קשר', id: 'home2' },
+		{ label: 'חוות דעת', id: 'features2' },
+		{ label: 'גלריה', id: 'features' },
+		{ label: 'מה אנחנו מציעים', id: 'contact' },
+		{ label: 'אודות', id: 'contact2' }
 	];
 </script>
 
