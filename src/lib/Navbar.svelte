@@ -18,13 +18,13 @@
 </script>
 
 <nav class="navbar" class:scrolled={isScrolled}>
-	<!-- <button class="brand" onclick={() => scrollToSection('home')}>
-		<img src="/pinecorn_blk.png" alt="Logo" class="logo-icon" />
+	<button class="brand" onclick={() => scrollToSection('home')}>
+		<img src="/pinecone-full.png" alt="Logo" class="logo-icon" />
 		<h3 class="brand-title">BAREGA</h3>
-	</button> -->
+	</button>
 	<div>
 		{#each items as item (item.id)}
-			<button onclick={() => scrollToSection(item.id)}>
+			<button class="nav-btn" onclick={() => scrollToSection(item.id)}>
 				{item.label}
 			</button>
 		{/each}
@@ -32,78 +32,6 @@
 </nav>
 
 <!-- <style>
-	.brand {
-		display: flex;
-		align-items: center; /* Vertically centers the icon and text */
-		gap: 12px; /* Space between icon and title */
-		cursor: pointer;
-	}
-
-	.logo-icon {
-		height: 40px; /* Adjust size as needed */
-		width: auto; /* Maintains aspect ratio */
-		object-fit: contain;
-
-		/* Apply the blend mode if you want it to change color like the text */
-		mix-blend-mode: difference;
-	}
-
-	.brand-title {
-		font-family: var(--font-heading); /* Using your Copperplate font */
-		font-size: 1.2rem;
-		margin: 0; /* Removes default h3 spacing */
-		mix-blend-mode: difference;
-		text-transform: uppercase;
-		letter-spacing: 1px;
-		color: rgb(208, 126, 38);
-		text-shadow: whitesmoke 1px 1px;
-		white-space: nowrap; /* Prevents the title from wrapping on small screens */
-	}
-	.navbar {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		position: fixed;
-		top: 20px;
-		left: 50%;
-		transform: translateX(-50%); /* Pull back by half its width to center */
-		width: 90%;
-		gap: 2rem;
-		padding: 1rem;
-		transition: background 0.3s;
-		z-index: 1000;
-		direction: rtl;
-		/* background-color: bisque; */
-		border-radius: 10px;
-	}
-	/* .scrolled {
-		background: rgba(255, 255, 255, 0.9);
-		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-	} */
-
-	.navbar.scrolled {
-		background: rgba(255, 255, 255, 0.95); /* Turns solid white (or nearly solid) */
-		color: #1a1a1a; /* Buttons and Title turn dark gray/black */
-		border: 1px solid rgba(0, 0, 0, 0.1);
-		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-		top: 10px; /* Optional: snaps closer to top when scrolling */
-	}
-	/* If your logo needs to change color too, you can use a filter */
-	.navbar.scrolled .logo-icon {
-		filter: invert(1); /* Inverts a white logo to black */
-	}
-	.nav-links button,
-	.brand-title {
-		color: inherit; /* They take the color from .navbar */
-		background: none;
-		border: none;
-		font-family: 'Copperplate Gothic', serif;
-		cursor: pointer;
-		transition: color 0.4s ease;
-	}
-</style> -->
-
-<style>
 	.navbar {
 		position: fixed;
 		top: 20px;
@@ -139,5 +67,80 @@
 		/* Difference mode can sometimes look 'neon'. 
        Using an isolation layer on the parent or 
        keeping the color white usually yields the best results. */
+	}
+</style> -->
+
+<style>
+	.brand {
+		display: flex;
+		align-items: center; /* Vertically centers the icon and text */
+		gap: 12px; /* Space between icon and title */
+		cursor: pointer;
+	}
+
+	.logo-icon {
+		height: 40px; /* Adjust size as needed */
+		width: auto; /* Maintains aspect ratio */
+		object-fit: contain;
+
+		/* Apply the blend mode if you want it to change color like the text */
+		/* mix-blend-mode: difference; */
+	}
+
+	.brand-title {
+		font-family: var(--font-heading); /* Using your Copperplate font */
+		font-size: 1.5rem;
+		margin: 0; /* Removes default h3 spacing */
+		mix-blend-mode: difference;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		color: rgb(208, 126, 38);
+		text-shadow: whitesmoke 1px 1px;
+		white-space: nowrap; /* Prevents the title from wrapping on small screens */
+	}
+	.navbar {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		position: fixed;
+		top: 20px;
+		left: 50%;
+		transform: translateX(-50%); /* Pull back by half its width to center */
+		width: 90%;
+		gap: 2rem;
+		padding: 1rem;
+		transition: background 0.3s;
+		z-index: 1000;
+		direction: ltr;
+		/* background-color: bisque; */
+		border-radius: 5px;
+		background: rgba(255, 255, 255, 0.9);
+	}
+	/* .scrolled {
+		background: rgba(255, 255, 255, 0.9);
+		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	} */
+	.navbar.scrolled {
+		background: rgb(200, 197, 197); /* Turns solid white (or nearly solid) */
+		color: #1a1a1a; /* Buttons and Title turn dark gray/black */
+		border: 1px solid rgba(0, 0, 0, 0.1);
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+		top: 10px; /* Optional: snaps closer to top when scrolling */
+	}
+
+	/* If your logo needs to change color too, you can use a filter */
+
+	.navbar.scrolled .logo-icon {
+		/* filter: invert(1); Inverts a white logo to black */
+	}
+
+	button {
+		background: none;
+		border: none;
+		cursor: pointer;
+		font-weight: bold;
+		font-size: clamp(0.5rem, 1.5vw, 2rem);
+		padding-left: 2vw;
+		gap: 0rem;
 	}
 </style>
