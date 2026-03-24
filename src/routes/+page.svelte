@@ -1,43 +1,36 @@
 <script lang="ts">
 	import Navbar from '$lib/Navbar.svelte';
 	import Section from '$lib/Section.svelte';
+	import AboutSection from '$lib/sections/AboutSection.svelte';
+	import ContactUsSection from '$lib/sections/ContactUsSection.svelte';
 	import HeroSection from '$lib/sections/HeroSection.svelte';
+	import SevicesSection from '$lib/sections/SevicesSection.svelte';
 	const navItems = [
 		{ label: '', id: 'home' },
-		{ label: 'צרו קשר', id: 'home2' },
-		{ label: 'חוות דעת', id: 'features2' },
-		{ label: 'גלריה', id: 'features' },
-		{ label: 'מה אנחנו מציעים', id: 'contact' },
-		{ label: 'אודות', id: 'contact2' }
+		{ label: 'דברו איתנו', id: 'contact' },
+		{ label: 'חוות דעת', id: 'opinions' },
+		{ label: 'גלריה', id: 'gallery' },
+		{ label: 'מה אנחנו מציעים', id: 'services' },
+		{ label: 'אודות', id: 'about' }
 	];
 </script>
 
 <Navbar items={navItems} />
 
 <main>
-	<Section id="home" isFullBleed={true} title="">
+	<Section id="home" title="">
 		<HeroSection />
 	</Section>
 
-	<Section id="features" title="Powerful Features">
-		<ul>
-			<li>Fast Performance</li>
-			<li>Declarative Runes</li>
-			<li>Easy Scoping</li>
-		</ul>
+	<Section id="about" title="">
+		<AboutSection />
 	</Section>
 
-	<Section id="contact" title="Get in Touch">
-		<form>
-			<input type="email" placeholder="Email" />
-			<button>Send</button>
-		</form>
+	<Section id="services" title="Get in Touch">
+		<SevicesSection />
 	</Section>
-	<Section id="contact2" title="Get in Touch">
-		<form>
-			<input type="email" placeholder="Email" />
-			<button>Send</button>
-		</form>
+	<Section id="contact" title="דברו איתנו">
+		<ContactUsSection />
 	</Section>
 </main>
 

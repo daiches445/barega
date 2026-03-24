@@ -3,7 +3,10 @@
   /* Set up variables for easy use */
   --font-heading: 'Copperplate Gothic', serif;
   --font-body: 'Cormorant Garamond', serif;
-  --root-bg-color : rgb(208, 126, 38);
+  /* --root-bg-color : #ffbf00;
+  --root-bg-color-light : #f6d05f; */
+    --root-bg-color : #835919;
+  --root-bg-color-light : #f6d05f;
 }
 
 :global(html, body) {

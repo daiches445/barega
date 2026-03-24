@@ -21,11 +21,13 @@
 	}
 
 	.hero-title {
+		margin: 0;
+		margin-top: 400px;
 		font-family: 'Copperplate Gothic', serif;
 		font-size: clamp(2rem, 8vw, 4rem);
 		text-transform: uppercase;
 		letter-spacing: 4px;
-		margin: 0;
+
 		text-shadow: var(--root-bg-color) 4px 4px;
 	}
 
