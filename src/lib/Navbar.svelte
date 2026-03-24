@@ -19,8 +19,8 @@
 
 <nav class="navbar" class:scrolled={isScrolled}>
 	<button class="brand" onclick={() => scrollToSection('home')}>
-		<img src="/pinecone-full.png" alt="Logo" class="logo-icon" />
-		<h3 class="brand-title">BAREGA</h3>
+		<!-- <img src="/pinecone-full.png" alt="Logo" class="logo-icon" /> -->
+		<!-- <h3 class="brand-title">BAREGA</h3> -->
 	</button>
 	<div>
 		{#each items as item (item.id)}
@@ -102,7 +102,7 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		position: fixed;
+		position: absolute;
 		top: 20px;
 		left: 50%;
 		transform: translateX(-50%); /* Pull back by half its width to center */
@@ -114,7 +114,7 @@
 		direction: ltr;
 		/* background-color: bisque; */
 		border-radius: 5px;
-		background: rgba(255, 255, 255, 0.9);
+		/* background: rgba(255, 255, 255, 0.9); */
 	}
 	/* .scrolled {
 		background: rgba(255, 255, 255, 0.9);
@@ -142,5 +142,7 @@
 		font-size: clamp(0.5rem, 1.5vw, 2rem);
 		padding-left: 2vw;
 		gap: 0rem;
+		text-shadow: var(--root-bg-color) 1px 1px;
+		color: white;
 	}
 </style>
