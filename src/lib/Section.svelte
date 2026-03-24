@@ -1,34 +1,46 @@
-<script lang="ts">
-	let { id, title, children, isFullBleed = false } = $props();
+<script>
+	import { fly } from 'svelte/transition';
+
+	// Using Svelte 5 snippets for children
+	let { children, title, id } = $props();
+
+	let isVisible = $state(false);
+	let sectionRef = $state();
+
+	$effect(() => {
+		const observer = new IntersectionObserver(
+			(entries) => {
+				if (entries[0].isIntersecting) {
+					isVisible = true;
+					observer.unobserve(sectionRef);
+				}
+			},
+			{ threshold: 0.1 }
+		);
+
+		if (sectionRef) observer.observe(sectionRef);
+
+		return () => observer.disconnect();
+	});
 </script>
 
-<section {id} class="section-wrapper" class:full-bleed={isFullBleed}>
-	<div class="container">
-		{#if title}
-			<h2>{title}</h2>
-		{/if}
-		{@render children()}
-	</div>
+<section {id} bind:this={sectionRef} class="base-section">
+	{#if isVisible}
+		<div in:fly={{ y: 30, duration: 1000 }}>
+			{@render children()}
+		</div>
+	{/if}
 </section>
 
 <style>
-	.section-wrapper {
-		min-height: 100vh;
-		min-height: 100dvh;
-		width: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		/* Remove default padding if it's full-bleed */
-	}
-
-	.section-wrapper:not(.full-bleed) {
+	.base-section {
 		padding: 4rem 2rem;
+		min-height: 200px; /* Ensures the observer has something to 'see' */
 	}
-
-	.container {
-		max-width: 1200px;
-		width: 90%;
-		margin: 0 auto;
+	section:nth-child(odd) {
+		background-color: var(--root-bg-color);
+	}
+	section:nth-child(even) {
+		background-color: var(--root-bg-color-light);
 	}
 </style>
