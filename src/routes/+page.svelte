@@ -1,78 +1,59 @@
 <script lang="ts">
 	import Navbar from '$lib/Navbar.svelte';
 	import Section from '$lib/Section.svelte';
+	import AboutSection from '$lib/sections/AboutSection.svelte';
+	import ContactUsSection from '$lib/sections/ContactUsSection.svelte';
 	import HeroSection from '$lib/sections/HeroSection.svelte';
+	import SevicesSection from '$lib/sections/SevicesSection.svelte';
 	const navItems = [
 		{ label: '', id: 'home' },
-		{ label: 'צרו קשר', id: 'home2' },
-		{ label: 'חוות דעת', id: 'features2' },
-		{ label: 'גלריה', id: 'features' },
-		{ label: 'מה אנחנו מציעים', id: 'contact' },
-		{ label: 'אודות', id: 'contact2' }
+		{ label: 'דברו איתנו', id: 'contact' },
+		{ label: 'חוות דעת', id: 'opinions' },
+		{ label: 'גלריה', id: 'gallery' },
+		{ label: 'מה אנחנו מציעים', id: 'services' },
+		{ label: 'אודות', id: 'about' }
 	];
 </script>
 
 <Navbar items={navItems} />
 
 <main>
-	<Section id="home" isFullBleed={true} title="">
+	<Section id="home">
 		<HeroSection />
 	</Section>
 
-	<Section id="features" title="Powerful Features">
-		<ul>
-			<li>Fast Performance</li>
-			<li>Declarative Runes</li>
-			<li>Easy Scoping</li>
-		</ul>
+	<Section id="about">
+		<AboutSection />
 	</Section>
 
-	<Section id="contact" title="Get in Touch">
-		<form>
-			<input type="email" placeholder="Email" />
-			<button>Send</button>
-		</form>
+	<Section id="services">
+		<SevicesSection />
 	</Section>
-	<Section id="contact2" title="Get in Touch">
-		<form>
-			<input type="email" placeholder="Email" />
-			<button>Send</button>
-		</form>
+	<Section id="contact">
+		<ContactUsSection />
 	</Section>
 </main>
 
 <style>
 	:global(#home) {
-		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		width: 100%;
-		height: 100dvh;
-		overflow: hidden; /* Clips the background to this section only */
-		background-image:
-			linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/home_background.jpg');
-		background-size: cover;
-		background-position: center;
+		/* One viewport below fixed nav + gap (see app.css --main-top-offset) */
+		height: calc(100dvh - var(--main-top-offset));
+		min-height: calc(100dvh - var(--main-top-offset));
+		padding: 0;
 	}
 
-	:global(#home::before) {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
+	/* Section inner: column so hero stacks above the section divider (::after), not beside it */
+	:global(#home > div) {
 		width: 100%;
 		height: 100%;
-
-		/* Your Image */
-		background-image: url('/home_background.jpg');
-		background-size: cover;
-		background-position: center;
-
-		/* The "Fixed" Effect Fix */
-		background-attachment: scroll; /* Change from fixed to scroll */
-
-		/* This ensures the image stays behind the text */
-		z-index: -1;
-
-		/* Optional: If you still want the parallax look without the shake, 
-       we can use a subtle transform instead of background-attachment */
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		justify-content: flex-start;
+		min-height: 0;
 	}
 </style>
