@@ -37,10 +37,5 @@
 		padding: 4rem 2rem;
 		min-height: 200px; /* Ensures the observer has something to 'see' */
 	}
-	section:nth-child(odd) {
-		background-color: var(--root-bg-color);
-	}
-	section:nth-child(even) {
-		background-color: var(--root-bg-color-light);
-	}
+
 </style>

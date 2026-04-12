@@ -1,9 +1,4 @@
 <div class="main">
-	<h2>דברו איתנו</h2>
-	<p>
-		נשמח לשמוע מכם! צרו קשר עם הצוות שלנו לכל שאלה, בקשה או משוב. אנחנו כאן כדי לעזור ולוודא שהחוויה
-		שלכם ב-Barega תהיה בלתי נשכחת.
-	</p>
 	<div class="contact-wrapper">
 		<img class="contact-img" src="/contact_pic.jpg" alt="Contact Image" />
 		<div class="contact-info">
@@ -59,14 +54,14 @@
 		flex-direction: row;
 		/* Align items center so the overlap looks balanced vertically */
 		align-items: center;
-		width: 60%; /* Adjusted for better spacing */
+		width: 80%; /* Adjusted for better spacing */
 		max-width: 1000px;
 		margin: 0 auto;
 		align-items: stretch; /* Ensures the contact info box stretches to match the image height */
 	}
 
 	.contact-img {
-		width: 500px; /* Fixed width or percentage */
+		width: 400px; /* Fixed width or percentage */
 		height: auto;
 		border-radius: 20px;
 		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -94,14 +89,15 @@
 	@media (max-width: 768px) {
 		.contact-wrapper {
 			flex-direction: column;
+			width: 100%;
 		}
 		.contact-img {
 			width: 100%;
 		}
 		.contact-info {
 			margin-left: 0;
-			margin-top: -50px; /* Overlap vertically on mobile instead */
-			width: 90%;
+			margin-top: -130px; /* Overlap vertically on mobile instead */
+			width: 100%;
 		}
 	}
 </style>

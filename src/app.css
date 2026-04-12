@@ -5,8 +5,9 @@
   --font-body: 'Cormorant Garamond', serif;
   /* --root-bg-color : #ffbf00;
   --root-bg-color-light : #f6d05f; */
-    --root-bg-color : #835919;
-  --root-bg-color-light : #f6d05f;
+  --root-bg-color : #9f5a11;
+  --root-bg-color-light : #f7c859;
+  --white-text-color: whitesmoke;
 }
 
 :global(html, body) {
@@ -69,4 +70,29 @@ h1, h2, h3, .navbar button {
   font-family: var(--font-heading);
   text-transform: uppercase; /* Copperplate often looks best in all-caps */
   letter-spacing: 2px;
+}
+p{
+  font-size: clamp(1rem, 2vw, 1.25rem); /* Responsive font size for paragraphs */
+}
+
+
+
+
+/* fonts */
+.m-plus-1p-regular {
+  font-family: "M PLUS 1p", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.m-plus-1p-medium {
+  font-family: "M PLUS 1p", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.m-plus-1p-bold {
+  font-family: "M PLUS 1p", sans-serif;
+  font-weight: 700;
+  font-style: normal;
 }
