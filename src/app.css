@@ -64,20 +64,6 @@ body {
   -webkit-overflow-scrolling: touch; /* Smooth scrolling for mobile */
 } 
 
-@font-face {
-  font-family: 'Copperplate Gothic';
-  src: url('/fonts/OPTICopperplate-Heavy.otf') format(ֿ'opentype'); /* Adjust format if it's .otf or .woff2 */
-  font-weight: bold;
-  font-style: normal;
-} 
-@font-face {
-  font-family: 'Copperplate Gothic';
-  src: url('/fonts/OPTICopperplate-Light.otf') format('opentype'); /* Adjust format if it's .otf or .woff2 */
-  font-weight: normal;
-  font-style: normal;
-}
-
-
 body {
   font-family: var(--font-body);
   line-height: 1.6;
