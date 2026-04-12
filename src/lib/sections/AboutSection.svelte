@@ -28,11 +28,11 @@
 <div bind:this={container} class="about-container">
 	{#if isVisible}
 		<div class="text-wrapper">
-			<h2 class="section-title" in:fly={{ y: 20, duration: 800, delay: 1000 }}>
+			<h2 class="section-title m-plus-1p-regular" in:fly={{ y: 20, duration: 800, delay: 1000 }}>
 				.בואו לחיות את הרגע
 			</h2>
 
-			<p class="section-text" in:fly={{ y: 20, duration: 800, delay: 1200 }}>
+			<p class="section-text m-plus-1p-regular" in:fly={{ y: 20, duration: 800, delay: 1200 }}>
 				בשמחה! הנה תרגום ששומר על האווירה המזמינה והיוקרתית של הבר: Barega הוא בר יין וקוקטיילים
 				אינטימי השוכן בלב העיר. אנו מתגאים בתפריט יינות שנאצר בקפידה מרחבי העולם, לצד קוקטיילים
 				הנרקחים במיומנות מרכיבים מקומיים וטריים. האווירה אצלנו חמה ומזמינה, מה שהופך את המקום לנקודה
@@ -54,16 +54,19 @@
 		min-height: 400px; /* Helps avoid layout shift before the elements load */
 		display: flex;
 		flex-direction: row;
-		align-items: right;
+		align-items: flex-start;
+		flex-wrap: wrap;
+		gap: 1.5rem;
 		text-align: right;
 		justify-content: flex-end;
 	}
 
 	.about-logo {
-		width: 400px;
+		width: min(400px, 100%);
+		max-width: 100%;
 		height: auto;
-		margin-bottom: 10px;
-		margin: 0px 40px;
+		display: block;
+		margin: 0 40px 10px;
 		box-shadow: 2px 2px black;
 		border-radius: 12px;
 	}
@@ -71,8 +74,19 @@
 	.text-wrapper {
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between; /* max-width: 600px; */
+		flex: 1 1 280px;
+		min-width: 0;
+		/* justify-content: space-between; max-width: 600px; */
 		margin-right: 40px;
+		/* background-image: url('/pinecone-martini-icon.png');
+		background-color: rgba(255, 248, 240, 0);
+		background-repeat: space;
+		background-size: 4.6rem;
+		background-clip: content-box;
+		-webkit-background-clip: padding-box;
+		border-radius: 20px;
+		/* border: #3f3a3a 7px solid; 
+		padding: 4rem; */
 	}
 	.section-title {
 		color: #333;
@@ -82,9 +96,29 @@
 	}
 
 	.section-text {
-		color: #150202;
-		font-size: clamp(1rem, 2vw, 2rem);
-		line-height: 1.5;
+		/* font-size: clamp(1rem, 2vw, 2rem); */
+		line-height: 2.5rem;
 		max-width: 800px;
+	}
+
+	@media (max-width: 768px) {
+		.about-container {
+			flex-direction: column;
+			align-items: stretch;
+			justify-content: flex-start;
+			text-align: right;
+		}
+
+		.text-wrapper {
+			margin-right: 0;
+			margin-inline: 0;
+		}
+
+		.about-logo {
+			width: 100%;
+			max-width: 100%;
+			margin: 0 auto 1rem;
+			box-sizing: border-box;
+		}
 	}
 </style>

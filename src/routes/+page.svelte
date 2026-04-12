@@ -36,36 +36,21 @@
 
 <style>
 	:global(#home) {
-		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		width: 100%;
 		height: 100dvh;
-		overflow: hidden; /* Clips the background to this section only */
-		background-image:
-			linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/home_background.jpg');
-		background-size: cover;
-		background-position: center;
+		padding: 0;
+		background-color: var(--root-bg-color);
 	}
 
-	:global(#home::before) {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
+	/* Section.svelte wraps content in an inner div (transition wrapper). */
+	:global(#home > div) {
 		width: 100%;
 		height: 100%;
-
-		/* Your Image */
-		background-image: url('/home_background.jpg');
-		background-size: cover;
-		background-position: center;
-
-		/* The "Fixed" Effect Fix */
-		background-attachment: scroll; /* Change from fixed to scroll */
-
-		/* This ensures the image stays behind the text */
-		z-index: -1;
-
-		/* Optional: If you still want the parallax look without the shake, 
-       we can use a subtle transform instead of background-attachment */
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 </style>

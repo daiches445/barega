@@ -30,6 +30,13 @@
 		{/each}
 	</div>
 </nav>
+<!-- .navbar.scrolled {
+		background: rgb(200, 197, 197); /* Turns solid white (or nearly solid) */
+		color: #1a1a1a; /* Buttons and Title turn dark gray/black */
+		border: 1px solid rgba(0, 0, 0, 0.1);
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+		top: 10px; /* Optional: snaps closer to top when scrolling */
+	} -->
 
 <!-- <style>
 	.navbar {
@@ -103,30 +110,40 @@
 		justify-content: space-between;
 		align-items: center;
 		position: absolute;
-		top: 20px;
+		top: 0px;
 		left: 50%;
 		transform: translateX(-50%); /* Pull back by half its width to center */
 		width: 90%;
 		gap: 2rem;
 		padding: 1rem;
-		transition: background 0.3s;
+		/* transition: background 0.3s; */
 		z-index: 1000;
 		direction: ltr;
 		/* background-color: bisque; */
 		border-radius: 5px;
 		/* background: rgba(255, 255, 255, 0.9); */
 	}
+
+	.navbar::after {
+		content: '';
+		position: absolute;
+		left: 50%;
+		bottom: 0;
+		width: 100vw;
+		transform: translateX(-50%);
+		border-bottom: 2px solid rgba(255, 255, 255, 0.55);
+		z-index: -1;
+		pointer-events: none;
+	}
+
+	.navbar > * {
+		position: relative;
+		z-index: 1;
+	}
 	/* .scrolled {
 		background: rgba(255, 255, 255, 0.9);
 		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 	} */
-	.navbar.scrolled {
-		background: rgb(200, 197, 197); /* Turns solid white (or nearly solid) */
-		color: #1a1a1a; /* Buttons and Title turn dark gray/black */
-		border: 1px solid rgba(0, 0, 0, 0.1);
-		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-		top: 10px; /* Optional: snaps closer to top when scrolling */
-	}
 
 	/* If your logo needs to change color too, you can use a filter */
 
