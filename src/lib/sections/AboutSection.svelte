@@ -89,7 +89,6 @@
 		padding: 4rem; */
 	}
 	.section-title {
-		color: #333;
 		font-size: clamp(2rem, 4vw, 4rem);
 		font-family: var(--font-heading);
 		margin: 0;

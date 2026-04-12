@@ -2,7 +2,7 @@
 	import { fly } from 'svelte/transition';
 
 	// Using Svelte 5 snippets for children
-	let { children, title, id } = $props();
+	let { children, id } = $props();
 
 	let isVisible = $state(false);
 	let sectionRef = $state();
@@ -26,7 +26,7 @@
 
 <section {id} bind:this={sectionRef} class="base-section">
 	{#if isVisible}
-		<div in:fly={{ y: 30, duration: 1000 }}>
+		<div class="section-inner" in:fly={{ y: 30, duration: 1000 }}>
 			{@render children()}
 		</div>
 	{/if}
@@ -38,4 +38,19 @@
 		min-height: 200px; /* Ensures the observer has something to 'see' */
 	}
 
+	.section-inner {
+		display: block;
+	}
+
+	.section-inner::after {
+		content: '';
+		display: block;
+		flex-shrink: 0;
+		align-self: center;
+		width: 75%;
+		max-width: 56rem;
+		margin: 3rem auto 0;
+		height: 1px;
+		background: var(--accent-color);
+	}
 </style>

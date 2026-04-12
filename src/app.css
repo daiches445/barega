@@ -7,7 +7,24 @@
   --root-bg-color-light : #f6d05f; */
   --root-bg-color : #9f5a11;
   --root-bg-color-light : #f7c859;
-  --white-text-color: whitesmoke;
+  --text-color: #1c1917;
+  --text-muted: #555555;
+  --text-on-dark: #ffffff;
+  --text-shadow: #146b81;
+  --page-bg: #fff9f0;
+  --accent-color: #29b6d9;
+  /* Alias (e.g. nav logo tint) — keep in sync with --accent-color */
+  --acct-color: var(--accent-color);
+  /* Fixed navbar + breathing room before first content (hero) */
+  --navbar-bar-height: 3.75rem;
+  --hero-nav-gap: 0.5rem;
+  --main-top-offset: calc(var(--navbar-bar-height) + var(--hero-nav-gap));
+}
+
+@media (max-width: 768px) {
+  :root {
+    --navbar-bar-height: 5rem;
+  }
 }
 
 :global(html, body) {
@@ -23,7 +40,7 @@ html, body {
   height: 100%;
   /* Optional: smoothing for that scroll-on-click feature */
   scroll-behavior: smooth; 
-  background-color:var(--root-bg-color);
+  background-color: var(--page-bg);
 }
 
 * {
@@ -64,6 +81,11 @@ body {
 body {
   font-family: var(--font-body);
   line-height: 1.6;
+  color: var(--text-color);
+}
+
+main {
+  padding-top: var(--main-top-offset);
 }
 
 h1, h2, h3, .navbar button {
@@ -71,7 +93,41 @@ h1, h2, h3, .navbar button {
   text-transform: uppercase; /* Copperplate often looks best in all-caps */
   letter-spacing: 2px;
 }
-p{
+
+.navbar button {
+  color: var(--text-color);
+  text-shadow: var(--root-bg-color) 1px 1px;
+  font-size: clamp(0.45rem, 1.2vw, 1.6rem);
+}
+
+.brand-title {
+  color: rgb(208, 126, 38);
+  text-shadow: whitesmoke 1px 1px;
+}
+
+
+.hero-title {
+  color: var(--text-on-dark);
+  text-shadow: var(--text-shadow) 4px 4px;
+}
+
+#about .section-title {
+  color: #333333;
+}
+
+#services .service-title {
+  color: #1a1a1a;
+}
+
+#services .service-text {
+  color: var(--text-muted);
+}
+
+#contact .contact-info {
+  color: rgb(0, 0, 0);
+}
+
+p {
   font-size: clamp(1rem, 2vw, 1.25rem); /* Responsive font size for paragraphs */
 }
 

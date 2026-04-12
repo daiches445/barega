@@ -73,7 +73,6 @@
 		margin-left: -150px; /* Pulls the box over the image */
 		padding: 40px;
 		background-color: whitesmoke;
-		color: rgb(0, 0, 0); /* Contrast against the tomato background */
 		border-radius: 15px;
 		box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
 

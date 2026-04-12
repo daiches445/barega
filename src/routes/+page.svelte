@@ -18,18 +18,18 @@
 <Navbar items={navItems} />
 
 <main>
-	<Section id="home" title="">
+	<Section id="home">
 		<HeroSection />
 	</Section>
 
-	<Section id="about" title="">
+	<Section id="about">
 		<AboutSection />
 	</Section>
 
-	<Section id="services" title="Get in Touch">
+	<Section id="services">
 		<SevicesSection />
 	</Section>
-	<Section id="contact" title="דברו איתנו">
+	<Section id="contact">
 		<ContactUsSection />
 	</Section>
 </main>
@@ -40,17 +40,20 @@
 		align-items: center;
 		justify-content: center;
 		width: 100%;
-		height: 100dvh;
+		/* One viewport below fixed nav + gap (see app.css --main-top-offset) */
+		height: calc(100dvh - var(--main-top-offset));
+		min-height: calc(100dvh - var(--main-top-offset));
 		padding: 0;
-		background-color: var(--root-bg-color);
 	}
 
-	/* Section.svelte wraps content in an inner div (transition wrapper). */
+	/* Section inner: column so hero stacks above the section divider (::after), not beside it */
 	:global(#home > div) {
 		width: 100%;
 		height: 100%;
 		display: flex;
-		align-items: center;
-		justify-content: center;
+		flex-direction: column;
+		align-items: stretch;
+		justify-content: flex-start;
+		min-height: 0;
 	}
 </style>
