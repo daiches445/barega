@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { base } from '$app/paths';
+
 	const subtitles = [
 		'WINE & COCKTAIL BAR',
 		'Fine wines & crafted cocktails',
@@ -63,7 +65,11 @@
 </script>
 
 <div class="hero-shell">
-	<div class="hero-bg-card" bind:this={cardEl}>
+	<div
+		class="hero-bg-card"
+		bind:this={cardEl}
+		style:background-image="url({base}/home_background.jpg)"
+	>
 		<div class="hero-overlay"></div>
 		<div class="hero-content">
 			<div
@@ -95,7 +101,6 @@
 		position: relative;
 		width: 90%;
 		height: calc(90% - 36px);
-		background-image: url('/home_background.jpg');
 		background-size: cover;
 		background-position: center;
 		background-repeat: no-repeat;

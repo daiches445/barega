@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { base } from '$app/paths';
+
 	type NavItem = { label: string; id: string };
 
 	let { items } = $props<{ items: NavItem[] }>();
@@ -58,7 +60,12 @@
 <nav class="navbar" class:scrolled={isScrolled} class:navbar--menu-open={menuOpen}>
 	<div class="navbar-bar">
 		<button class="brand" type="button" aria-label="Barega home" onclick={() => navTo('home')}>
-			<span class="logo-icon" role="img" aria-label="Barega"></span>
+			<span
+				class="logo-icon"
+				role="img"
+				aria-label="Barega"
+				style:--mask-url="url({base}/pinecone-martini-icon.png)"
+			></span>
 		</button>
 
 		<button
@@ -122,8 +129,8 @@
 		width: auto;
 		aspect-ratio: 960 / 1094;
 		background-color: var(--acct-color);
-		-webkit-mask-image: url('/pinecone-martini-icon.png');
-		mask-image: url('/pinecone-martini-icon.png');
+		-webkit-mask-image: var(--mask-url);
+		mask-image: var(--mask-url);
 		-webkit-mask-size: contain;
 		mask-size: contain;
 		-webkit-mask-repeat: no-repeat;

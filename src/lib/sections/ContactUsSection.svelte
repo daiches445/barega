@@ -1,6 +1,10 @@
+<script>
+	import { base } from '$app/paths';
+</script>
+
 <div class="main">
 	<div class="contact-wrapper">
-		<img class="contact-img" src="/contact_pic.jpg" alt="Contact Image" />
+		<img class="contact-img" src="{base}/contact_pic.jpg" alt="Contact" />
 		<div class="contact-info">
 			<p><strong>טלפון:</strong> 123-456-7890</p>
 			<p><strong>אימייל:</strong></p>

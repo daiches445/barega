@@ -1,4 +1,5 @@
 <script>
+	import { base } from '$app/paths';
 	import { fly } from 'svelte/transition';
 
 	let isVisible = $state(false);
@@ -41,8 +42,8 @@
 			</p>
 		</div>
 		<img
-			src="/about_side_pic.jpg"
-			alt="Pinecone Logo"
+			src="{base}/about_side_pic.jpg"
+			alt="Barega interior"
 			class="about-logo"
 			in:fly={{ y: 20, duration: 2000, delay: 600 }}
 		/>
