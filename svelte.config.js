@@ -9,8 +9,9 @@ const config = {
       fallback: '404.html' // Best for Single Page Apps (SPA)
     }),
     paths: {
-      // Replace 'your-repo-name' with your actual GitHub repository name
-      base: process.env.NODE_ENV === 'production' ? '/barega' : '',
+      // Must match the repo segment: https://<user>.github.io/<this>/
+      // If your GitHub repo path differs, change this string (e.g. '/barega_bar').
+      base: process.env.NODE_ENV === 'production' ? '/barega-bar' : '',
     }
   }
 };
