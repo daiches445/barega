@@ -87,7 +87,8 @@
 	</div>
 
 	{#if menuOpen}
-		<button type="button" class="menu-backdrop" aria-label="Close menu" onclick={closeMenu}></button>
+		<button type="button" class="menu-backdrop" aria-label="Close menu" onclick={closeMenu}
+		></button>
 	{/if}
 
 	<div
@@ -110,6 +111,8 @@
 		align-items: center;
 		gap: 12px;
 		cursor: pointer;
+		padding: 0;
+		margin: 0;
 	}
 
 	.logo-icon {
@@ -149,7 +152,8 @@
 		justify-content: space-between;
 		align-items: center;
 		gap: 1rem;
-		padding: 1rem;
+		/* Match hero card: 90% width centered → (100% − 90%) / 2 = 5% inset each side */
+		padding: 1rem 5%;
 		position: relative;
 		z-index: 1002;
 	}
@@ -161,7 +165,7 @@
 		bottom: 0;
 		width: 100vw;
 		transform: translateX(-50%);
-		border-bottom: 2px solid var(--accent-color);
+		border-bottom: 2px solid var(--text-muted);
 		z-index: 1;
 		pointer-events: none;
 	}
@@ -238,7 +242,14 @@
 		border: none;
 		cursor: pointer;
 		font-weight: bold;
+	}
+
+	button.nav-btn {
 		padding-left: 2vw;
+	}
+
+	button.menu-toggle {
+		padding: 0;
 	}
 
 	@media (max-width: 768px) {

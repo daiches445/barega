@@ -95,8 +95,7 @@ h1, h2, h3, .navbar button {
 }
 
 .navbar button {
-  color: var(--text-color);
-  text-shadow: var(--root-bg-color) 1px 1px;
+  color: var(--text-muted);
   font-size: clamp(0.45rem, 1.2vw, 1.6rem);
 }
 
