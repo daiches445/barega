@@ -133,7 +133,7 @@
 	.logo-icon {
 		display: inline-block;
 		flex-shrink: 0;
-		height: 56px;
+		height: 48px;
 		width: auto;
 		aspect-ratio: 960 / 1094;
 		background-color: var(--acct-color);
@@ -168,7 +168,7 @@
 		align-items: center;
 		gap: 1rem;
 		/* Match hero card: 90% width centered → (100% − 90%) / 2 = 5% inset each side */
-		padding: 1rem 5%;
+		padding: 0.55rem 5%;
 		position: relative;
 		z-index: 1002;
 	}
@@ -269,7 +269,7 @@
 
 	@media (max-width: 768px) {
 		.logo-icon {
-			height: 44px;
+			height: 40px;
 		}
 
 		.menu-toggle {

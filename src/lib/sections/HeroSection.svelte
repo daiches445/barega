@@ -128,6 +128,7 @@
 		position: absolute;
 		inset: 0;
 		background: rgba(0, 0, 0, 0.35);
+		border-radius: inherit;
 	}
 
 	.hero-content {
@@ -136,6 +137,7 @@
 		height: 100%;
 		text-align: center;
 		z-index: 1;
+		border-radius: inherit;
 	}
 
 	.hero-text-track {
