@@ -19,7 +19,15 @@
 	function scrollToSection(id: string) {
 		const element = document.getElementById(id);
 		if (element) {
-			element.scrollIntoView({ behavior: 'smooth' });
+			const navbar = document.querySelector('.navbar') as HTMLElement | null;
+			const navbarHeight = navbar?.offsetHeight ?? 0;
+			const anchor = (element.querySelector('.section-inner') as HTMLElement | null) ?? element;
+			const top = Math.max(0, window.scrollY + anchor.getBoundingClientRect().top - navbarHeight);
+
+			window.scrollTo({
+				top,
+				behavior: 'smooth'
+			});
 		}
 	}
 

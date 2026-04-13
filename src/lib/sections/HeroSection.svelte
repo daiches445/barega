@@ -9,8 +9,9 @@
 
 	let cardEl = $state<HTMLDivElement | undefined>();
 	let textEl = $state<HTMLDivElement | undefined>();
+	let titleEl = $state<HTMLHeadingElement | undefined>();
 	let progress = $state(0);
-	let maxTranslate = $state(0);
+	let textTop = $state(0);
 
 	function clamp01(n: number) {
 		return Math.min(1, Math.max(0, n));
@@ -18,50 +19,63 @@
 
 	function updateProgress() {
 		if (typeof window === 'undefined') return;
-		const range = window.innerHeight * 0.72;
+		// Longer range = slower transitions over more scroll distance.
+		const range = window.innerHeight * 0.7;
 		progress = clamp01(window.scrollY / range);
 	}
 
-	function updateMaxTranslate() {
+	function updateTextTop() {
+		if (typeof window === 'undefined') return;
 		if (!cardEl || !textEl) return;
-		const ch = cardEl.clientHeight;
+		const rect = cardEl.getBoundingClientRect();
 		const th = textEl.offsetHeight;
+		const h1Height = titleEl?.offsetHeight ?? 0;
 		const pad = 28;
-		maxTranslate = Math.max(0, ch / 2 - th / 2 - pad);
+		const desiredTopInViewport = window.innerHeight * 0.5 - th / 2;
+		const minTopInViewport = rect.top + pad;
+		// Allow the track to sit lower: stop when ~half of the h1 crosses the card's bottom edge.
+		const maxTopInViewport = rect.bottom - h1Height * 0.5;
+		const clampedTopInViewport = Math.max(
+			minTopInViewport,
+			Math.min(desiredTopInViewport, maxTopInViewport)
+		);
+		textTop = Math.max(0, clampedTopInViewport - rect.top);
 	}
 
 	function onResize() {
 		updateProgress();
-		updateMaxTranslate();
+		updateTextTop();
 	}
 
 	$effect(() => {
 		updateProgress();
-		window.addEventListener('scroll', updateProgress, { passive: true });
+		updateTextTop();
+		const onScroll = () => {
+			updateProgress();
+			updateTextTop();
+		};
+		window.addEventListener('scroll', onScroll, { passive: true });
 		window.addEventListener('resize', onResize);
 		return () => {
-			window.removeEventListener('scroll', updateProgress);
+			window.removeEventListener('scroll', onScroll);
 			window.removeEventListener('resize', onResize);
 		};
 	});
 
 	$effect(() => {
 		if (!cardEl || !textEl) return;
-		updateMaxTranslate();
-		const ro = new ResizeObserver(() => updateMaxTranslate());
+		updateTextTop();
+		const ro = new ResizeObserver(() => updateTextTop());
 		ro.observe(cardEl);
 		ro.observe(textEl);
+		if (titleEl) ro.observe(titleEl);
 		return () => ro.disconnect();
 	});
 
-	const subtitleIndex = $derived(
-		Math.min(subtitles.length - 1, Math.floor(progress * subtitles.length))
-	);
+	const subtitleIndex = $derived(Math.min(subtitles.length - 1, Math.floor(progress * 1.25 * subtitles.length)));
 
-	/** When text sits lower on the image, bias toward light-on-dark; later scroll → dark for page bg contrast */
-	const useDarkInk = $derived(progress > 0.78);
-
-	const translateY = $derived(progress * maxTranslate);
+	/** Switch to dark ink earlier, while text is still mostly within image boundaries. */
+	const useDarkInk = $derived(progress > 0.56);
 </script>
 
 <div class="hero-shell">
@@ -76,9 +90,9 @@
 				class="hero-text-track"
 				class:hero-text-track--ink-dark={useDarkInk}
 				bind:this={textEl}
-				style:transform="translate3d(0, {translateY}px, 0)"
+				style:top="{textTop}px"
 			>
-				<h1 class="hero-title">barega</h1>
+				<h1 class="hero-title" bind:this={titleEl}>barega</h1>
 				<p class="hero-subtitle">{subtitles[subtitleIndex]}</p>
 			</div>
 		</div>
@@ -107,7 +121,7 @@
 		border-radius: 32px;
 		border: 1px solid rgba(255, 255, 255, 0.18);
 		box-shadow: 0 18px 34px rgba(0, 0, 0, 0.32);
-		overflow: hidden;
+		overflow: visible;
 	}
 
 	.hero-overlay {
@@ -118,10 +132,6 @@
 
 	.hero-content {
 		position: relative;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
 		width: 100%;
 		height: 100%;
 		text-align: center;
@@ -129,6 +139,10 @@
 	}
 
 	.hero-text-track {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		width: min(92%, 900px);
 		display: flex;
 		flex-direction: column;
 		align-items: center;
