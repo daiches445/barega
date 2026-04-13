@@ -3,6 +3,8 @@
 	import Section from '$lib/Section.svelte';
 	import AboutSection from '$lib/sections/AboutSection.svelte';
 	import ContactUsSection from '$lib/sections/ContactUsSection.svelte';
+	import Footer from '$lib/Footer.svelte';
+	import GallerySection from '$lib/sections/GallerySection.svelte';
 	import HeroSection from '$lib/sections/HeroSection.svelte';
 	import SevicesSection from '$lib/sections/SevicesSection.svelte';
 	const navItems = [
@@ -29,9 +31,13 @@
 	<Section id="services">
 		<SevicesSection />
 	</Section>
+	<Section id="gallery">
+		<GallerySection />
+	</Section>
 	<Section id="contact">
 		<ContactUsSection />
 	</Section>
+	<Footer />
 </main>
 
 <style>
