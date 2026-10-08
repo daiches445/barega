@@ -18,7 +18,9 @@ const config = {
 			fallback: '404.html'
 		}),
 		paths: {
-			base
+			base,
+			// Absolute URLs so static assets like /home_background.jpg always resolve
+			relative: false
 		}
 	}
 };

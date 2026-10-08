@@ -19,7 +19,6 @@
 
 	function updateProgress() {
 		if (typeof window === 'undefined') return;
-		// Longer range = slower transitions over more scroll distance.
 		const range = window.innerHeight * 0.7;
 		progress = clamp01(window.scrollY / range);
 	}
@@ -31,10 +30,20 @@
 		const th = textEl.offsetHeight;
 		const h1Height = titleEl?.offsetHeight ?? 0;
 		const pad = 28;
+		const gapBeforeAbout = 32;
+		// Match .hero-bg-card::after inset (1.25rem desktop / 0.85rem mobile)
+		const frameInset = window.matchMedia('(max-width: 768px)').matches ? 13.6 : 20;
+		const frameBottom = rect.bottom - frameInset;
 		const desiredTopInViewport = window.innerHeight * 0.5 - th / 2;
 		const minTopInViewport = rect.top + pad;
-		// Allow the track to sit lower: stop when ~half of the h1 crosses the card's bottom edge.
-		const maxTopInViewport = rect.bottom - h1Height * 0.5;
+		// Rest BAREGA on the pink outline (straddle the bottom edge)
+		let maxTopInViewport = frameBottom - h1Height * 0.5;
+		// Never collide with the about section title
+		const aboutTitle = document.querySelector('#about .section-title') as HTMLElement | null;
+		if (aboutTitle) {
+			const aboutTop = aboutTitle.getBoundingClientRect().top;
+			maxTopInViewport = Math.min(maxTopInViewport, aboutTop - th - gapBeforeAbout);
+		}
 		const clampedTopInViewport = Math.max(
 			minTopInViewport,
 			Math.min(desiredTopInViewport, maxTopInViewport)
@@ -72,9 +81,10 @@
 		return () => ro.disconnect();
 	});
 
-	const subtitleIndex = $derived(Math.min(subtitles.length - 1, Math.floor(progress * 1.25 * subtitles.length)));
+	const subtitleIndex = $derived(
+		Math.min(subtitles.length - 1, Math.floor(progress * 1.25 * subtitles.length))
+	);
 
-	/** Switch to dark ink earlier, while text is still mostly within image boundaries. */
 	const useDarkInk = $derived(progress > 0.56);
 </script>
 
@@ -85,6 +95,8 @@
 		style:background-image="url({base}/home_background.jpg)"
 	>
 		<div class="hero-overlay"></div>
+		<!-- Frame underneath — BAREGA sits on top of the line -->
+		<div class="hero-frame" aria-hidden="true"></div>
 		<div class="hero-content">
 			<div
 				class="hero-text-track"
@@ -93,7 +105,12 @@
 				style:top="{textTop}px"
 			>
 				<h1 class="hero-title" bind:this={titleEl}>barega</h1>
-				<p class="hero-subtitle">{subtitles[subtitleIndex]}</p>
+				<p
+					class="hero-subtitle"
+					class:hero-subtitle--pine={subtitleIndex === 2}
+				>
+					{subtitles[subtitleIndex]}
+				</p>
 			</div>
 		</div>
 	</div>
@@ -104,23 +121,26 @@
 		flex: 1 1 auto;
 		min-height: 0;
 		width: 100%;
+		height: 100%;
 		display: flex;
-		align-items: center;
-		justify-content: center;
-		padding-top: 0;
+		align-items: stretch;
+		justify-content: stretch;
+		padding: 0;
 		box-sizing: border-box;
 	}
 
 	.hero-bg-card {
 		position: relative;
-		width: 90%;
-		height: calc(90% - 36px);
+		flex: 1 1 auto;
+		width: 100%;
+		height: 100%;
 		background-size: cover;
 		background-position: center;
 		background-repeat: no-repeat;
-		border-radius: 32px;
-		border: 1px solid rgba(255, 255, 255, 0.18);
-		box-shadow: 0 18px 34px rgba(0, 0, 0, 0.32);
+		border-radius: 0;
+		border: none;
+		box-shadow: none;
+		/* Must stay visible so the title can flow past the image bottom */
 		overflow: visible;
 	}
 
@@ -128,16 +148,29 @@
 		position: absolute;
 		inset: 0;
 		background: rgba(0, 0, 0, 0.35);
-		border-radius: inherit;
+		border-radius: 0;
+		z-index: 0;
 	}
 
+	/* Frame under the title */
+	.hero-frame {
+		position: absolute;
+		inset: 1.25rem;
+		border: 2px solid var(--pinecone-accent, #d65a7a);
+		border-radius: 16px;
+		pointer-events: none;
+		z-index: 1;
+		box-sizing: border-box;
+	}
+
+	/* BAREGA on top of the outline */
 	.hero-content {
 		position: relative;
 		width: 100%;
 		height: 100%;
 		text-align: center;
-		z-index: 1;
-		border-radius: inherit;
+		z-index: 2;
+		border-radius: 0;
 	}
 
 	.hero-text-track {
@@ -148,7 +181,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		will-change: transform;
+		will-change: top;
 		transition:
 			color 0.35s ease,
 			text-shadow 0.35s ease;
@@ -157,7 +190,7 @@
 	.hero-text-track .hero-title {
 		margin: 0;
 		font-family: 'Copperplate Gothic', serif;
-		font-size: clamp(2rem, 8vw, 4rem);
+		font-size: clamp(2.75rem, 12vw, 7rem);
 		text-transform: uppercase;
 		letter-spacing: 4px;
 		color: var(--text-on-dark);
@@ -169,9 +202,9 @@
 
 	.hero-text-track .hero-subtitle {
 		font-family: 'Cormorant Garamond', serif;
-		font-size: 1.5rem;
+		font-size: clamp(1.35rem, 2.8vw, 2.15rem);
 		font-style: italic;
-		margin-top: 10px;
+		margin-top: 12px;
 		margin-bottom: 0;
 		color: var(--text-on-dark);
 		opacity: 0.95;
@@ -188,11 +221,16 @@
 		text-shadow: 0 1px 0 var(--page-bg);
 	}
 
+	/* 3rd phase: pinecone accent */
+	.hero-text-track .hero-subtitle--pine,
+	.hero-text-track--ink-dark .hero-subtitle--pine {
+		color: var(--pinecone-accent, #d65a7a);
+		text-shadow: 0 1px 0 var(--page-bg);
+	}
+
 	@media (max-width: 768px) {
-		.hero-bg-card {
-			width: 95%;
-			height: calc(95% - 32px);
-			border-radius: 24px;
+		.hero-frame {
+			inset: 0.85rem;
 		}
 	}
 </style>
