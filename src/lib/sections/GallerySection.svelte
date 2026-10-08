@@ -85,8 +85,7 @@
 </script>
 
 <section class="gallery-wrapper" dir="rtl">
-	<h2 class="gallery-title">גלריה</h2>
-	<p class="gallery-subtitle">טעימה מהאווירה, הקוקטיילים והרגעים היפים בבארגה</p>
+	<h2 class="gallery-title">טעימה מהאווירה, הקוקטיילים והרגעים היפים</h2>
 
 	{#if !hasCloudinaryConfig}
 		<p class="gallery-hint">
@@ -160,14 +159,17 @@
 	}
 
 	.gallery-title {
-		margin: 0;
-		font-size: clamp(2rem, 4vw, 3rem);
-		font-family: var(--font-heading);
-	}
-
-	.gallery-subtitle {
-		margin: 0.5rem 0 1.5rem;
-		color: var(--text-muted);
+		/* Equal space above & below — same rhythm as services heading */
+		margin: 3rem 0;
+		font-family: var(--font-gveret-levin);
+		font-size: clamp(2.5rem, 6vw, 4.5rem);
+		font-weight: 400;
+		line-height: 1.15;
+		text-align: center;
+		color: var(--text-color);
+		letter-spacing: 0;
+		text-transform: none;
+		text-shadow: 0 4px 0 var(--text-shadow);
 	}
 
 	.gallery-hint {

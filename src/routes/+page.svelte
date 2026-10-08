@@ -6,6 +6,7 @@
 	import Footer from '$lib/Footer.svelte';
 	import GallerySection from '$lib/sections/GallerySection.svelte';
 	import HeroSection from '$lib/sections/HeroSection.svelte';
+	import OpinionsSection from '$lib/sections/OpinionsSection.svelte';
 	import SevicesSection from '$lib/sections/SevicesSection.svelte';
 	const navItems = [
 		{ label: '', id: 'home' },
@@ -34,6 +35,9 @@
 	<Section id="gallery">
 		<GallerySection />
 	</Section>
+	<Section id="opinions">
+		<OpinionsSection />
+	</Section>
 	<Section id="contact">
 		<ContactUsSection />
 	</Section>
@@ -46,13 +50,11 @@
 		align-items: center;
 		justify-content: center;
 		width: 100%;
-		/* One viewport below fixed nav + gap (see app.css --main-top-offset) */
 		height: calc(100dvh - var(--main-top-offset));
 		min-height: calc(100dvh - var(--main-top-offset));
-		padding: 0;
+		padding: 0 !important;
 	}
 
-	/* Section inner: column so hero stacks above the section divider (::after), not beside it */
 	:global(#home > div) {
 		width: 100%;
 		height: 100%;
@@ -61,5 +63,30 @@
 		align-items: stretch;
 		justify-content: flex-start;
 		min-height: 0;
+	}
+
+	:global(#home .section-divider) {
+		display: none;
+	}
+
+	:global(#about) {
+		/* Extra room so hero sticky text clears the about title */
+		padding-top: 9rem;
+		padding-bottom: 0 !important;
+	}
+
+	:global(#services) {
+		padding-top: 0 !important;
+		padding-bottom: 0 !important;
+	}
+
+	:global(#gallery) {
+		padding-top: 0 !important;
+		padding-bottom: 0 !important;
+	}
+
+	:global(#opinions) {
+		padding-top: 0 !important;
+		padding-bottom: 0 !important;
 	}
 </style>
